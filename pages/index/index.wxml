@@ -1,10 +1,48 @@
 <!--index.wxml-->
-<view class="container">
-  <view  bindtap="bindViewTap" class="userinfo">
-    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+<!--<view class="index">
+  <view class="index-bd">-->
+<view>
+  <scroll-view  scroll-y="true">
+    <!--
+    style="height: {{scrollHeight}}px;"
+    scroll-top="{{scrollTop}}"
+    bindscrolltolower="bindDownLoad"
+    bindscroll="scroll"
+    bindscrolltoupper="refresh"-->
+    <block wx:for-items="{{list}}" wx:key="{{item.id}}">
+      <navigator url="/pages/class/class?key={{item.id}}" class="navigator">
+        <view class="row" id="{{item.id}}" bindtap="tapToLocation">
+          <view>
+            <image class="course-img" src="{{item.img}}"></image>
+          </view>
+
+          <view>
+            <view class="row-left">
+              {{item.name}} 
+            </view>
+            <view class="row-right">
+              {{item.studentNum}}人班
+            </view>
+          </view>
+
+          <view>
+            <view class="row-left">
+              <text>{{item.teacherInfo}}</text>
+              <text>{{item.location}}</text>
+            </view>
+            <view class="row-right small-font">
+              {{item.price}}元/小时
+            </view>
+          </view>
+        </view>
+      </navigator>
+    </block>
+  </scroll-view >
+  <view class="body-view">
+    <loading hidden="{{hidden}}" bindchange="loadingChange">
+      加载中...
+    </loading>
   </view>
 </view>
+  <!--</view>
+</view>-->
